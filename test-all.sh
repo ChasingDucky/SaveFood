@@ -5,14 +5,14 @@ echo "🔍 SaveFood 完整诊断测试"
 echo "================================================"
 echo ""
 
-echo "1️⃣ 测试后端 API (端口 8888)"
+echo "1️⃣ 测试后端 API (端口 6666)"
 echo "----------------------------------------"
-curl -s http://localhost:8888 && echo "" || echo "❌ 后端无法访问"
+curl -s http://localhost:6666 && echo "" || echo "❌ 后端无法访问"
 echo ""
 
-echo "2️⃣ 测试前端服务器 (端口 5173)"
+echo "2️⃣ 测试前端服务器 (端口 6667)"
 echo "----------------------------------------"
-HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:5173)
+HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:6667)
 echo "HTTP 状态码: $HTTP_CODE"
 if [ "$HTTP_CODE" = "200" ]; then
     echo "✅ 前端服务器响应正常"
@@ -23,7 +23,7 @@ echo ""
 
 echo "3️⃣ 检查前端 HTML 内容"
 echo "----------------------------------------"
-HTML_CONTENT=$(curl -s http://localhost:5173)
+HTML_CONTENT=$(curl -s http://localhost:6667)
 if echo "$HTML_CONTENT" | grep -q "SaveFood"; then
     echo "✅ HTML 包含 SaveFood 标题"
 else
@@ -45,7 +45,7 @@ echo ""
 
 echo "4️⃣ 测试 API 代理 (前端 -> 后端)"
 echo "----------------------------------------"
-API_TEST=$(curl -s http://localhost:5173/api)
+API_TEST=$(curl -s http://localhost:6667/api)
 if [ -z "$API_TEST" ]; then
     echo "❌ API 代理可能有问题"
 else

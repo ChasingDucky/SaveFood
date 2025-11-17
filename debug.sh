@@ -26,12 +26,12 @@ echo ""
 
 echo "5. 测试后端 API..."
 echo "----------------------------------------"
-curl -s http://localhost:8888 || echo "后端无法访问"
+curl -s http://localhost:6666 || echo "后端无法访问"
 echo ""
 
 echo "6. 测试前端..."
 echo "----------------------------------------"
-curl -s -I http://localhost:5173 | head -5 || echo "前端无法访问"
+curl -s -I http://localhost:6667 | head -5 || echo "前端无法访问"
 echo ""
 
 echo "=========================================="

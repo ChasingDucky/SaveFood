@@ -25,25 +25,25 @@ echo ""
 # 4. 测试端口连通性
 echo "🔌 4. 测试端口连通性"
 echo "----------------------------------------"
-echo -n "后端 8888: "
-nc -z localhost 8888 && echo "✅ 可访问" || echo "❌ 无法访问"
+echo -n "后端 6666: "
+nc -z localhost 6666 && echo "✅ 可访问" || echo "❌ 无法访问"
 
-echo -n "前端 5173: "
-nc -z localhost 5173 && echo "✅ 可访问" || echo "❌ 无法访问"
+echo -n "前端 6667: "
+nc -z localhost 6667 && echo "✅ 可访问" || echo "❌ 无法访问"
 
-echo -n "MongoDB 27017: "
-nc -z localhost 27017 && echo "✅ 可访问" || echo "❌ 无法访问"
+echo -n "MongoDB 27018: "
+nc -z localhost 27018 && echo "✅ 可访问" || echo "❌ 无法访问"
 echo ""
 
 # 5. 测试 API 响应
 echo "🌐 5. 测试 API 响应"
 echo "----------------------------------------"
 echo "后端 API:"
-curl -s --max-time 3 http://localhost:8888 && echo "" || echo "❌ 后端无响应"
+curl -s --max-time 3 http://localhost:6666 && echo "" || echo "❌ 后端无响应"
 echo ""
 
 echo "前端服务器 (前 100 字符):"
-curl -s --max-time 3 http://localhost:5173 | head -c 100
+curl -s --max-time 3 http://localhost:6667 | head -c 100
 echo ""
 echo ""
 
@@ -78,7 +78,7 @@ elif [ -z "$BACKEND_RUNNING" ]; then
 else
     echo "✅ 所有容器都在运行"
     echo ""
-    echo "   请访问: http://localhost:5173"
+    echo "   请访问: http://localhost:6667"
     echo "   在浏览器中按 Cmd+Shift+R 硬刷新"
 fi
 echo ""

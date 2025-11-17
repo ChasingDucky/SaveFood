@@ -5,7 +5,7 @@ echo ""
 
 echo "1. 测试前端首页 HTML..."
 echo "----------------------------------------"
-curl -s http://localhost:5173 | head -30
+curl -s http://localhost:6667 | head -30
 echo ""
 
 echo "2. 检查浏览器控制台错误（进入前端容器）..."
@@ -25,7 +25,7 @@ echo ""
 
 echo "5. 测试 API 代理..."
 echo "----------------------------------------"
-curl -s http://localhost:5173/api || echo "API 代理可能有问题"
+curl -s http://localhost:6667/api || echo "API 代理可能有问题"
 echo ""
 
 echo "✅ 检查完成"

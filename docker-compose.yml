@@ -9,7 +9,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: savefood2024
       MONGO_INITDB_DATABASE: savefood
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongodb_data:/data/db
     networks:
@@ -24,11 +24,11 @@ services:
     restart: unless-stopped
     environment:
       NODE_ENV: development
-      PORT: 8888
+      PORT: 6666
       MONGODB_URI: mongodb://admin:savefood2024@mongodb:27017/savefood?authSource=admin
       JWT_SECRET: savefood_jwt_secret_key_2024
     ports:
-      - "8888:8888"
+      - "6666:6666"
     volumes:
       - ./backend:/app
       - /app/node_modules
@@ -46,9 +46,9 @@ services:
     restart: unless-stopped
     environment:
       DOCKER_ENV: "true"
-      VITE_API_URL: http://localhost:8888/api
+      VITE_API_URL: http://localhost:6666/api
     ports:
-      - "5173:5173"
+      - "6667:6667"
     volumes:
       - ./frontend:/app
       - /app/node_modules

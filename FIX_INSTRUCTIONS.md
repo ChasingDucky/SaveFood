@@ -4,7 +4,7 @@
 
 您遇到的白屏问题是由于 **API 端口配置不匹配** 导致的：
 
-- 后端服务运行在端口 **8888** ✅
+- 后端服务运行在端口 **6666** ✅
 - 前端 API 配置默认值仍然是端口 **5000** ❌
 - 结果：前端无法连接到后端 API，导致白屏
 
@@ -13,8 +13,8 @@
 我已经提交并推送了以下修复：
 
 1. **frontend/src/services/api.js**
-   - 将 API URL 默认端口从 5000 改为 8888
-   - 修复行：`const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api';`
+   - 将 API URL 默认端口从 5000 改为 6666
+   - 修复行：`const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:6666/api';`
 
 2. **frontend/.gitignore**
    - 添加了 .env 文件排除规则，提高安全性
@@ -65,11 +65,11 @@ docker-compose ps
 
 - **Mac**: 按 `Cmd + Shift + R` 硬刷新
 - **Windows/Linux**: 按 `Ctrl + Shift + R` 硬刷新
-- 或者使用 **无痕/隐私模式** 打开 http://localhost:5173
+- 或者使用 **无痕/隐私模式** 打开 http://localhost:6667
 
 ### 第六步：验证修复
 
-1. 访问 http://localhost:5173
+1. 访问 http://localhost:6667
 2. 应该能看到完整的 SaveFood 首页，包括：
    - 绿色渐变的 Hero 区域
    - "拯救美味，从今天开始" 标题
@@ -83,7 +83,7 @@ docker-compose ps
 
 ```bash
 # 测试后端是否正常响应
-curl http://localhost:8888
+curl http://localhost:6666
 
 # 应该返回类似这样的 JSON：
 # {"message":"Welcome to SaveFood API","version":"1.0.0"}
@@ -96,7 +96,7 @@ curl http://localhost:8888
 grep "API_URL" frontend/src/services/api.js
 
 # 应该显示：
-# const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api';
+# const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:6666/api';
 ```
 
 ### 查看容器日志
@@ -120,20 +120,20 @@ docker-compose logs -f backend
 
 ### 问题根源
 
-当我们之前修改后端端口从 5000 到 8888 以解决端口冲突时，忘记更新前端 API 配置文件中的默认值。
+当我们之前修改后端端口从 5000 到 6666 以解决端口冲突时，忘记更新前端 API 配置文件中的默认值。
 
-虽然 `docker-compose.yml` 中设置了环境变量 `VITE_API_URL=http://localhost:8888/api`，但在某些情况下（如开发模式或环境变量未正确传递），会使用代码中的默认值。
+虽然 `docker-compose.yml` 中设置了环境变量 `VITE_API_URL=http://localhost:6666/api`，但在某些情况下（如开发模式或环境变量未正确传递），会使用代码中的默认值。
 
 ### 修复方案
 
-更新了 `frontend/src/services/api.js` 中的默认值，确保无论环境变量是否设置，都指向正确的端口 8888。
+更新了 `frontend/src/services/api.js` 中的默认值，确保无论环境变量是否设置，都指向正确的端口 6666。
 
 ```javascript
 // 修复前
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 // 修复后
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:6666/api';
 ```
 
 ## 🎉 预期结果
