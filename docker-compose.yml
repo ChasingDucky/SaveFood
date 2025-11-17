@@ -48,7 +48,7 @@ services:
       DOCKER_ENV: "true"
       VITE_API_URL: http://localhost:8888/api
     ports:
-      - "3000:3000"
+      - "7000:7000"
     volumes:
       - ./frontend:/app
       - /app/node_modules
