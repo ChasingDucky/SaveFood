@@ -22,7 +22,7 @@ docker-compose ps
 echo ""
 echo "=========================================="
 echo "📱 应用访问地址："
-echo "   前端：http://localhost:7000"
+echo "   前端：http://localhost:5173"
 echo "   后端：http://localhost:8888"
 echo "=========================================="
 echo ""

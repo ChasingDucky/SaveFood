@@ -65,11 +65,11 @@ docker-compose ps
 
 - **Mac**: 按 `Cmd + Shift + R` 硬刷新
 - **Windows/Linux**: 按 `Ctrl + Shift + R` 硬刷新
-- 或者使用 **无痕/隐私模式** 打开 http://localhost:7000
+- 或者使用 **无痕/隐私模式** 打开 http://localhost:5173
 
 ### 第六步：验证修复
 
-1. 访问 http://localhost:7000
+1. 访问 http://localhost:5173
 2. 应该能看到完整的 SaveFood 首页，包括：
    - 绿色渐变的 Hero 区域
    - "拯救美味，从今天开始" 标题
