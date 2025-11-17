@@ -159,7 +159,7 @@ docker-compose down
 
 启动后访问：
 - **前端**: http://localhost:3000
-- **后端 API**: http://localhost:5000
+- **后端 API**: http://localhost:5001
 - **MongoDB**: localhost:27017
 
 ### 方式二：本地开发
@@ -199,7 +199,7 @@ mongod
 5. **启动后端服务**
 ```bash
 npm run dev
-# 后端运行在 http://localhost:5000
+# 后端运行在 http://localhost:5001
 ```
 
 6. **安装前端依赖**
@@ -217,7 +217,7 @@ npm run dev
 ### 访问应用
 
 - 前端地址：http://localhost:3000
-- 后端 API：http://localhost:5000/api
+- 后端 API：http://localhost:5001/api
 
 ## 🐳 Docker 部署
 
