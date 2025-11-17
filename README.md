@@ -26,7 +26,17 @@ SaveFood 是一个减少食物浪费的创新平台，连接商家和消费者�
 
 ## 🎨 设计特色
 
-### 莫奈取色方案
+### 强化的 UI 设计
+
+SaveFood 采用现代化的 UI 设计，提供卓越的用户体验：
+
+#### 🌈 视觉效果
+- **渐变背景**：多层次的渐变效果，营造深度感
+- **动画效果**：流畅的 Fade、Zoom 和悬浮动画
+- **阴影系统**：自定义的多层次阴影，增强视觉层次
+- **圆角设计**：统一的圆角风格（12-20px），现代且友好
+
+#### 🎭 莫奈取色方案
 
 灵感来自莫奈的《睡莲》系列，使用柔和的蓝绿色调和温暖的互补色：
 
@@ -35,14 +45,29 @@ SaveFood 是一个减少食物浪费的创新平台，连接商家和消费者�
 - **点缀色**：粉色 (#EC407A) - 增添活力
 - **背景色**：淡雅的浅绿色 (#E8F5E9)
 
+#### ✨ 交互设计
+- **悬浮效果**：卡片悬浮时上浮 4-8px
+- **按钮动画**：渐变背景 + 阴影变化
+- **输入框动画**：聚焦时轻微上浮和阴影增强
+- **加载动画**：优雅的旋转加载器配合图标动画
+
+#### 🏆 特色组件
+- **Hero 区域**：大胆的渐变背景 + 动画装饰
+- **统计卡片**：带图标的渐变卡片 + 边框装饰
+- **功能展示**：彩色顶部装饰条 + 大图标
+- **用户评价**：星级评分 + 斜体引用样式
+
 ### Material Design 异形图标
 
-使用 Material-UI 的图标系统，包括：
+使用 Material-UI 的完整图标系统：
 - 🍽️ Restaurant - 餐厅/食物
 - 🛍️ ShoppingBag - 购物/订单
 - 🏪 Store - 商家
 - 📍 LocationOn - 位置
 - ⏰ AccessTime - 时间
+- 🌸 LocalFlorist - 装饰元素
+- ⭐ Star - 评分
+- 💚 FavoriteBorder - 收藏
 
 ## 🛠️ 技术栈
 
@@ -113,13 +138,39 @@ SaveFood/
 
 ## 🚀 快速开始
 
-### 环境要求
+### 方式一：使用 Docker（推荐）
+
+使用 Docker Compose 一键启动所有服务：
+
+```bash
+# 克隆项目
+git clone <repository-url>
+cd SaveFood
+
+# 启动所有服务（MongoDB + 后端 + 前端）
+docker-compose up -d
+
+# 查看日志
+docker-compose logs -f
+
+# 停止所有服务
+docker-compose down
+```
+
+启动后访问：
+- **前端**: http://localhost:3000
+- **后端 API**: http://localhost:5000
+- **MongoDB**: localhost:27017
+
+### 方式二：本地开发
+
+#### 环境要求
 
 - Node.js 16+
 - MongoDB 4.4+
 - npm 或 yarn
 
-### 安装步骤
+#### 安装步骤
 
 1. **克隆项目**
 ```bash
@@ -167,6 +218,51 @@ npm run dev
 
 - 前端地址：http://localhost:3000
 - 后端 API：http://localhost:5000/api
+
+## 🐳 Docker 部署
+
+项目包含完整的 Docker 配置：
+
+### Docker Compose 服务
+
+- **mongodb**: MongoDB 7.0 数据库
+- **backend**: Node.js Express 后端API
+- **frontend**: React Vite 前端应用
+
+### Docker 命令
+
+```bash
+# 构建镜像
+docker-compose build
+
+# 启动服务
+docker-compose up -d
+
+# 查看运行状态
+docker-compose ps
+
+# 查看日志
+docker-compose logs -f [service_name]
+
+# 停止服务
+docker-compose stop
+
+# 删除容器
+docker-compose down
+
+# 删除容器和数据卷
+docker-compose down -v
+```
+
+### 生产环境部署
+
+对于生产环境，建议：
+
+1. 修改 `docker-compose.yml` 中的数据库密码
+2. 使用环境变量文件管理敏感信息
+3. 配置 Nginx 作为反向代理
+4. 启用 HTTPS
+5. 配置日志收集和监控
 
 ## 📱 主要功能模块
 
