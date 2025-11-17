@@ -8,25 +8,48 @@
 
 **可能原因**：
 - 前端无法连接到后端 API
+- **API URL 配置错误（端口不匹配）** ⬅️ 最常见原因
 - 容器网络配置问题
 - 环境变量未正确设置
+- 浏览器缓存问题
 
 **解决方案**：
 
 ```bash
-# 1. 停止所有容器
+# 1. 首先拉取最新代码（包含端口修复）
+git pull
+
+# 2. 停止所有容器
 docker-compose down
 
-# 2. 重新构建并启动（强制重建）
+# 3. 重新构建并启动（强制重建）
 docker-compose up -d --build
 
-# 3. 查看日志
+# 4. 查看日志
 docker-compose logs -f frontend
 docker-compose logs -f backend
 
-# 4. 检查容器状态
+# 5. 检查容器状态
 docker-compose ps
+
+# 6. 清除浏览器缓存并硬刷新
+# Mac: Cmd+Shift+R
+# Windows/Linux: Ctrl+Shift+R
+# 或使用无痕/隐私模式打开
 ```
+
+**特别说明 - API 端口配置问题**（已修复）：
+
+白屏问题通常由前后端端口不匹配导致。如果您遇到此问题：
+
+1. **问题原因**：之前修改后端端口从 5000 到 5001 后，前端 API 配置的默认值仍是 5000
+2. **已修复**：最新代码已将 `frontend/src/services/api.js` 中的默认端口改为 5001
+3. **验证修复**：
+   ```bash
+   # 检查 API 配置是否正确
+   grep "API_URL" frontend/src/services/api.js
+   # 应该显示: const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+   ```
 
 ### 2. 端口冲突
 
