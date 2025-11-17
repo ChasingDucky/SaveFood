@@ -42,27 +42,27 @@ docker-compose ps
 
 白屏问题通常由前后端端口不匹配导致。如果您遇到此问题：
 
-1. **问题原因**：之前修改后端端口从 5000 到 5001 后，前端 API 配置的默认值仍是 5000
-2. **已修复**：最新代码已将 `frontend/src/services/api.js` 中的默认端口改为 5001
+1. **问题原因**：之前修改后端端口从 5000 到 8888 后，前端 API 配置的默认值仍是 5000
+2. **已修复**：最新代码已将 `frontend/src/services/api.js` 中的默认端口改为 8888
 3. **验证修复**：
    ```bash
    # 检查 API 配置是否正确
    grep "API_URL" frontend/src/services/api.js
-   # 应该显示: const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+   # 应该显示: const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api';
    ```
 
 ### 2. 端口冲突
 
 **症状**：
 ```
-Error: ports are not available: listen tcp 0.0.0.0:5001: bind: address already in use
+Error: ports are not available: listen tcp 0.0.0.0:8888: bind: address already in use
 ```
 
 **解决方案**：
 
 ```bash
 # 查看占用端口的进程
-lsof -i :5001
+lsof -i :8888
 
 # 如果需要更换端口，修改以下文件：
 # - docker-compose.yml (PORT 和 ports 配置)
@@ -113,7 +113,7 @@ docker-compose ps backend
 
 2. 测试后端 API：
 ```bash
-curl http://localhost:5001
+curl http://localhost:8888
 ```
 
 3. 检查 Vite 代理配置：

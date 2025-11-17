@@ -24,11 +24,11 @@ services:
     restart: unless-stopped
     environment:
       NODE_ENV: development
-      PORT: 5001
+      PORT: 8888
       MONGODB_URI: mongodb://admin:savefood2024@mongodb:27017/savefood?authSource=admin
       JWT_SECRET: savefood_jwt_secret_key_2024
     ports:
-      - "5001:5001"
+      - "8888:8888"
     volumes:
       - ./backend:/app
       - /app/node_modules
@@ -46,7 +46,7 @@ services:
     restart: unless-stopped
     environment:
       DOCKER_ENV: "true"
-      VITE_API_URL: http://localhost:5001/api
+      VITE_API_URL: http://localhost:8888/api
     ports:
       - "3000:3000"
     volumes:

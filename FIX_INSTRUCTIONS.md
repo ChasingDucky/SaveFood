@@ -4,7 +4,7 @@
 
 您遇到的白屏问题是由于 **API 端口配置不匹配** 导致的：
 
-- 后端服务运行在端口 **5001** ✅
+- 后端服务运行在端口 **8888** ✅
 - 前端 API 配置默认值仍然是端口 **5000** ❌
 - 结果：前端无法连接到后端 API，导致白屏
 
@@ -13,8 +13,8 @@
 我已经提交并推送了以下修复：
 
 1. **frontend/src/services/api.js**
-   - 将 API URL 默认端口从 5000 改为 5001
-   - 修复行：`const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';`
+   - 将 API URL 默认端口从 5000 改为 8888
+   - 修复行：`const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api';`
 
 2. **frontend/.gitignore**
    - 添加了 .env 文件排除规则，提高安全性
@@ -83,7 +83,7 @@ docker-compose ps
 
 ```bash
 # 测试后端是否正常响应
-curl http://localhost:5001
+curl http://localhost:8888
 
 # 应该返回类似这样的 JSON：
 # {"message":"Welcome to SaveFood API","version":"1.0.0"}
@@ -96,7 +96,7 @@ curl http://localhost:5001
 grep "API_URL" frontend/src/services/api.js
 
 # 应该显示：
-# const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+# const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api';
 ```
 
 ### 查看容器日志
@@ -120,20 +120,20 @@ docker-compose logs -f backend
 
 ### 问题根源
 
-当我们之前修改后端端口从 5000 到 5001 以解决端口冲突时，忘记更新前端 API 配置文件中的默认值。
+当我们之前修改后端端口从 5000 到 8888 以解决端口冲突时，忘记更新前端 API 配置文件中的默认值。
 
-虽然 `docker-compose.yml` 中设置了环境变量 `VITE_API_URL=http://localhost:5001/api`，但在某些情况下（如开发模式或环境变量未正确传递），会使用代码中的默认值。
+虽然 `docker-compose.yml` 中设置了环境变量 `VITE_API_URL=http://localhost:8888/api`，但在某些情况下（如开发模式或环境变量未正确传递），会使用代码中的默认值。
 
 ### 修复方案
 
-更新了 `frontend/src/services/api.js` 中的默认值，确保无论环境变量是否设置，都指向正确的端口 5001。
+更新了 `frontend/src/services/api.js` 中的默认值，确保无论环境变量是否设置，都指向正确的端口 8888。
 
 ```javascript
 // 修复前
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 // 修复后
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8888/api';
 ```
 
 ## 🎉 预期结果

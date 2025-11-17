@@ -26,7 +26,7 @@ echo ""
 
 echo "5. 测试后端 API..."
 echo "----------------------------------------"
-curl -s http://localhost:5001 || echo "后端无法访问"
+curl -s http://localhost:8888 || echo "后端无法访问"
 echo ""
 
 echo "6. 测试前端..."
