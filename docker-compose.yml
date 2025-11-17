@@ -45,6 +45,7 @@ services:
     container_name: savefood-frontend
     restart: unless-stopped
     environment:
+      DOCKER_ENV: "true"
       VITE_API_URL: http://localhost:5001/api
     ports:
       - "3000:3000"

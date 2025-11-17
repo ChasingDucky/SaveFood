@@ -7,10 +7,14 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
+    watch: {
+      usePolling: true,
+    },
     proxy: {
       '/api': {
-        target: 'http://localhost:5001',
+        target: process.env.DOCKER_ENV ? 'http://backend:5001' : 'http://localhost:5001',
         changeOrigin: true,
+        secure: false,
       },
     },
   },
